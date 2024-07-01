@@ -6,15 +6,15 @@ const state = reactive({
   todoArray: []
 })
 const todoAdd = () => {
-  if (state.inputValue== '') {
-        alert("Please Add Your Task")
-       return;
-    }
+  if (state.inputValue == '') {
+    alert('Please Add Your Task')
+    return
+  }
   const todoObj = {
     id: Date.now() + '',
     value: state.inputValue,
     fav: false,
-    editable:false,
+    editable: false
   }
   console.log('click todoObj', todoObj)
   state.todoArray.push(todoObj)
@@ -28,13 +28,13 @@ const deleteTodo = (todo) => {
   // const filterTodo =state.todoArray.filter(td => td.id != todo.id)
   // state.todoArray= filterTodo;
 }
-const editMe = (todo) =>{
-console.log("editme",todo);
-todo.editable=true;
+const editMe = (todo) => {
+  console.log('editme', todo)
+  todo.editable = true
 }
-const favMe = (todo) =>{
-  console.log(todo);
-  todo.fav=true;
+const favMe = (todo) => {
+  console.log(todo)
+  todo.fav = true
 }
 </script>
 
@@ -43,19 +43,49 @@ const favMe = (todo) =>{
     <nav class="bg-blue-600 flex justify-center p-4">
       <h1 class="text-white text-2xl">Your Todo App</h1>
     </nav>
-    <div class="w-2/3 h-3/4 border-gray-900 rounded-xl mx-auto mt-4 p-4 bg-slate-200 shadow-xl ">
-      <div>
-      </div>
+    <div class="w-2/3 h-3/4 border-gray-900 rounded-xl mx-auto mt-4 p-4 bg-slate-200 shadow-xl">
+      <div></div>
       <div class="flex">
         <input
           @keydown.enter="todoAdd"
           v-model="state.inputValue"
-          class="text-xl p-2 w-10/12 rounded-2xl shadow-lg"
+          class="text-xl p-2 w-11/12 rounded-2xl shadow-lg"
           placeholder="Your Todo"
           type="text"
         />
-        <button class="bg-purple-900 w-2/12 text-white p-2 font-bold ml-2 rounded-lg" @click="todoAdd">
-          Add Todo
+        <button class="bg-purple-900 text-white p-2 font-bold ml-2 rounded-lg" @click="todoAdd">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="40"
+            height="36"
+            x="0"
+            y="0"
+            viewBox="0 0 512 512"
+            style="enable-background: new 0 0 512 512"
+            xml:space="preserve"
+            class=""
+          >
+            <g>
+              <path
+                fill="#581c87"
+                fill-rule="evenodd"
+                d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z"
+                clip-rule="evenodd"
+                opacity="1"
+                data-original="#4bae4f"
+                class=""
+              ></path>
+              <path
+                fill="#ffffff"
+                d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z"
+                opacity="1"
+                data-original="#ffffff"
+                class=""
+              ></path>
+            </g>
+          </svg>
         </button>
       </div>
       <div class="h-5/6 overflow-y-auto">
@@ -64,10 +94,11 @@ const favMe = (todo) =>{
           :key="todo"
           class="flex gap-2 mt-2 bg-slate-50 justify-between p-2 rounded-lg"
         >
-        <input v-if="todo.editable"
+          <input
+            v-if="todo.editable"
             @keydown.enter="todo.editable = false"
             v-model="todo.value"
-            class="text-xl p-2  rounded-2xl "
+            class="text-xl p-2 rounded-2xl"
             type="text"
           />
           <p v-else class="text-lg">
@@ -103,8 +134,11 @@ const favMe = (todo) =>{
                 </g>
               </svg>
             </button>
-  
-            <button class="bg-emerald-500 text-white px-2 rounded-lg text-lg font-semibold shadow-lg" @click="editMe(todo)">
+
+            <button
+              class="bg-emerald-500 text-white px-2 rounded-lg text-lg font-semibold shadow-lg"
+              @click="editMe(todo)"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
@@ -199,8 +233,11 @@ const favMe = (todo) =>{
                 </g>
               </svg>
             </button>
-  
-            <button class="bg-pink-500 text-white px-2 rounded-lg text-lg font-semibold shadow-lg" @click="favMe(todo)">
+
+            <button
+              class="bg-pink-500 text-white px-2 rounded-lg text-lg font-semibold shadow-lg"
+              @click="favMe(todo)"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
@@ -213,7 +250,7 @@ const favMe = (todo) =>{
                 style="enable-background: new 0 0 512 512"
                 xml:space="preserve"
               >
-                <g >
+                <g>
                   <path
                     d="M466.186 74.688C436.688 45.19 397.47 28.945 355.754 28.945c-36.894 0-71.836 12.708-99.827 36.051-27.989-23.343-62.933-36.051-99.825-36.051-41.716 0-80.936 16.245-110.433 45.743-60.891 60.891-60.892 159.97 0 220.865l171.249 171.249c10.389 10.387 24.242 16.107 39.01 16.107s28.621-5.721 39.01-16.108l171.248-171.248c60.892-60.894 60.892-159.974 0-220.865z"
                     :fill="todo.fav ? '#000000' : '#ffffff'"
